@@ -6,3 +6,5 @@ const kLighterPrimaryColor = Color(0xFF1E1F33);
 const kAccentColor = Color(0xFFEA1556);
 const kTextColor = Color(0xFFFDFEFE);
 const kSecondaryTextColor = Color(0xFF8C8D98);
+const kWhiteColor = Color(0xFFFEFFFF);
+const kLightGreyColor = Color(0xFF888995);

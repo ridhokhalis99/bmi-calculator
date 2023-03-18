@@ -1,8 +1,8 @@
-import 'package:bmi_calculator/constants/colors.dart';
-import 'package:bmi_calculator/pages/input_page/components/input_gender.dart';
 import 'package:flutter/material.dart';
-import '../../components/card.dart';
+import 'package:bmi_calculator/components/card.dart';
 import 'components/bottom_button.dart';
+import 'package:bmi_calculator/pages/input_page/components/input_gender.dart';
+import 'package:bmi_calculator/pages/input_page/components/input_height.dart';
 
 class InputPage extends StatefulWidget {
   const InputPage({super.key});
@@ -26,16 +26,9 @@ class _InputPageState extends State<InputPage> {
           children: [
             const Expanded(flex: 2, child: InputGender()),
             const SizedBox(height: 8.0),
-            Expanded(
+            const Expanded(
               flex: 3,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: const [
-                  CustomCard(
-                    child: Text('test'),
-                  ),
-                ],
-              ),
+              child: InputHeight(),
             ),
             const SizedBox(height: 8.0),
             Expanded(
