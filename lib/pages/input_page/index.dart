@@ -47,7 +47,7 @@ class _InputPageState extends State<InputPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Center(
-          child: Text('BMI Calculator'),
+          child: Text('BMI CALCULATOR'),
         ),
       ),
       body: Container(
@@ -82,7 +82,20 @@ class _InputPageState extends State<InputPage> {
           ],
         ),
       ),
-      bottomSheet: const BottomButton(),
+      bottomSheet: BottomButton(
+        onTap: () {
+          Navigator.pushNamed(
+            context,
+            '/result',
+            arguments: {
+              'gender': _gender,
+              'height': _height,
+              'weight': _weight,
+              'age': _age,
+            },
+          );
+        },
+      ),
     );
   }
 }
