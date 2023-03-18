@@ -3,8 +3,13 @@ import 'package:bmi_calculator/constants/colors.dart';
 import 'package:bmi_calculator/constants/styles.dart';
 
 class InputHeight extends StatefulWidget {
+  final int height;
+  final void Function(int height) onHeightChange;
+
   const InputHeight({
     Key? key,
+    required this.height,
+    required this.onHeightChange,
   }) : super(key: key);
 
   @override
@@ -12,14 +17,12 @@ class InputHeight extends StatefulWidget {
 }
 
 class _InputHeightState extends State<InputHeight> {
-  var height = 150;
-
   @override
   Widget build(BuildContext context) {
+    late int height = widget.height;
+
     onChanged(double value) {
-      setState(() {
-        height = value.toInt();
-      });
+      widget.onHeightChange(value.toInt());
     }
 
     return Card(
@@ -44,9 +47,11 @@ class _InputHeightState extends State<InputHeight> {
           ),
           SliderTheme(
             data: SliderTheme.of(context).copyWith(
-                thumbColor: kAccentColor,
-                activeTrackColor: kWhiteColor,
-                inactiveTrackColor: kLightGreyColor),
+              thumbColor: kAccentColor,
+              activeTrackColor: kWhiteColor,
+              inactiveTrackColor: kLightGreyColor,
+              overlayColor: kAccentColor.withOpacity(0.2),
+            ),
             child: Slider(
               value: height.toDouble(),
               min: 120,

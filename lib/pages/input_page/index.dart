@@ -1,18 +1,47 @@
+import 'package:bmi_calculator/constants/enums.dart';
 import 'package:bmi_calculator/pages/input_page/components/input_weight_age.dart';
 import 'package:flutter/material.dart';
-import 'package:bmi_calculator/components/card.dart';
-import 'components/bottom_button.dart';
+import 'package:bmi_calculator/pages/input_page/components/bottom_button.dart';
 import 'package:bmi_calculator/pages/input_page/components/input_gender.dart';
 import 'package:bmi_calculator/pages/input_page/components/input_height.dart';
 
 class InputPage extends StatefulWidget {
-  const InputPage({super.key});
+  const InputPage({Key? key}) : super(key: key);
 
   @override
-  State createState() => _InputPageState();
+  _InputPageState createState() => _InputPageState();
 }
 
 class _InputPageState extends State<InputPage> {
+  Gender _gender = Gender.male;
+  int _height = 173;
+  int _weight = 70;
+  int _age = 21;
+
+  void _onGenderChange(Gender gender) {
+    setState(() {
+      _gender = gender;
+    });
+  }
+
+  void _onHeightChange(int height) {
+    setState(() {
+      _height = height;
+    });
+  }
+
+  void _onWeightChange(int weight) {
+    setState(() {
+      _weight = weight;
+    });
+  }
+
+  void _onAgeChange(int age) {
+    setState(() {
+      _age = age;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,18 +53,32 @@ class _InputPageState extends State<InputPage> {
       body: Container(
         margin: const EdgeInsets.fromLTRB(16.0, 24.0, 16.0, 80.0),
         child: Column(
-          children: const [
-            Expanded(flex: 2, child: InputGender()),
-            SizedBox(height: 8.0),
-            Expanded(
-              flex: 3,
-              child: InputHeight(),
-            ),
-            SizedBox(height: 8.0),
+          children: [
             Expanded(
               flex: 2,
-              child: InputWeightAge(),
-            )
+              child: InputGender(
+                onGenderChange: _onGenderChange,
+                gender: _gender,
+              ),
+            ),
+            const SizedBox(height: 8.0),
+            Expanded(
+              flex: 3,
+              child: InputHeight(
+                onHeightChange: _onHeightChange,
+                height: _height,
+              ),
+            ),
+            const SizedBox(height: 8.0),
+            Expanded(
+              flex: 2,
+              child: InputWeightAge(
+                weight: _weight,
+                onWeightChange: _onWeightChange,
+                age: _age,
+                onAgeChange: _onAgeChange,
+              ),
+            ),
           ],
         ),
       ),

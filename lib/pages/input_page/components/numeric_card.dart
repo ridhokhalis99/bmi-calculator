@@ -4,12 +4,17 @@ import 'package:bmi_calculator/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class NumericCard extends StatefulWidget {
-  final String label;
-  final int defaultValue;
-  const NumericCard({
+  String label;
+  int value, min, max;
+  Function onChange;
+
+  NumericCard({
     Key? key,
     required this.label,
-    required this.defaultValue,
+    required this.value,
+    required this.min,
+    required this.max,
+    required this.onChange,
   }) : super(key: key);
 
   @override
@@ -17,25 +22,27 @@ class NumericCard extends StatefulWidget {
 }
 
 class _NumericCardState extends State<NumericCard> {
-  late int _value;
-
-  @override
-  void initState() {
-    super.initState();
-    _value = widget.defaultValue;
-  }
-
   @override
   Widget build(BuildContext context) {
+    int value = widget.value;
+    int min = widget.min;
+    int max = widget.max;
+    String label = widget.label;
+    Function onChange = widget.onChange;
+
     void onAdd() {
+      if (value >= max) return;
       setState(() {
-        _value++;
+        value++;
+        onChange(value);
       });
     }
 
     void onMinus() {
+      if (value <= min) return;
       setState(() {
-        _value--;
+        value--;
+        onChange(value);
       });
     }
 
@@ -43,11 +50,11 @@ class _NumericCardState extends State<NumericCard> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(widget.label, style: kLabelTextStyle),
+          Text(label, style: kLabelTextStyle),
           const SizedBox(
             height: 12.0,
           ),
-          Text(_value.toString(), style: kNumberTextStyle),
+          Text(value.toString(), style: kNumberTextStyle),
           const SizedBox(
             height: 12.0,
           ),

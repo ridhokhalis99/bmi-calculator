@@ -14,11 +14,11 @@ class BottomButton extends StatelessWidget {
         color: kAccentColor,
         child: const Center(
           child: Text(
-            'Calculate',
+            'CALCULATE',
             style: TextStyle(
-              fontSize: 24.0,
-              fontWeight: FontWeight.bold,
-            ),
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 0.5),
           ),
         ),
       ),
